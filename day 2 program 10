@@ -1,6 +1,4 @@
-#10. Python program to remove words that are common in two Strings
-Given two strings S1 and S2, representing sentences, the task is to print both sentences after 
-removing all words which are present in both sentences.
+#10. Python program to remove words that are common in two Strings Given two strings S1 and S2, representing sentences, the task is to print both sentences after removing all words which are present in both sentences.
 def removeCommonWords(sent1,sent2):
   com=[]
   sent1=list(sentence1.split())
