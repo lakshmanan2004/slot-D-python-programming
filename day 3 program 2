@@ -1,7 +1,4 @@
-# 2. The Project manager has to submit the project within a week period. He didn’t find the 
-proper combinations of team members to work on the project, Help him in finding the 
-possible combinations available.
-Accept 3 digits and find all the combinations
+# 2. The Project manager has to submit the project within a week period. He didn’t find the proper combinations of team members to work on the project, Help him in finding the possible combinations available.Accept 3 digits and find all the combinations
 import itertools 
 digit=3
 num=input("Enter the number:")
