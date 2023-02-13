@@ -1,0 +1,55 @@
+#Given a matrix of size N * N containing only 0s and 1s, where 0 represents white and 1 represents black. The task is to minimize the number of swaps to form a valid chessboard. Only 2 rows or 2 columns can be swapped with each other.If it is impossible to form a chessboard, return -1.
+def is_valid_board(board):
+    n = len(board)
+    for i in range(n):
+        for j in range(n):
+            if board[i][j] ^ board[0][0] ^ board[i][0] ^ board[0][j]:
+                return False
+    return True
+
+def min_swaps(board):
+    n = len(board)
+    row_sum = [sum(row) for row in board]
+    col_sum = [sum(board[i][j] for i in range(n)) for j in range(n)]
+    
+    if any(x not in [n//2, (n+1)//2] for x in row_sum + col_sum):
+        return -1
+    
+    row_odd, col_odd = row_sum.index(n//2), col_sum.index(n//2)
+    row_swap = sum(board[row_odd][j] != j%2 for j in range(n))
+    col_swap = sum(board[i][col_odd] != i%2 for i in range(n))
+    
+    if n%2 == 1:
+        if row_sum[row_odd] == (n+1)//2:
+            return row_swap
+        elif col_sum[col_odd] == (n+1)//2:
+            return col_swap
+        else:
+            return -1
+    else:
+        return min(row_swap + col_swap, n - row_swap - col_swap)
+
+# Prompt the user for input
+n = int(input("Enter the size of the board (N): "))
+board = []
+for i in range(n):
+    row = input(f"Enter row {i+1}: ").strip().split()
+    if len(row) != n:
+        print("Error: Invalid row length. Please enter exactly", n, "numbers separated by spaces.")
+        exit(1)
+    try:
+        row = [int(x) for x in row]
+    except ValueError:
+        print("Error: Invalid input. Please enter only 0s and 1s.")
+        exit(1)
+    if any(x not in [0, 1] for x in row):
+        print("Error: Invalid input. Please enter only 0s and 1s.")
+        exit(1)
+    board.append(row)
+
+# Compute the result and print it
+result = min_swaps(board)
+if result == -1:
+    print("It is impossible to form a valid chessboard with this input.")
+else:
+    print("The minimum number of swaps to form a valid chessboard is", result)
