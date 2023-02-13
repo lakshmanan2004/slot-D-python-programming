@@ -1,6 +1,4 @@
-#6. Python3 implementation of the approach
-from collections import deque
- 
+#6. Python3 implementation of the approach from collections import deque
 # Function to return a list that contains
 # all the generated letter combinations
 
